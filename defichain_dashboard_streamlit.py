@@ -169,7 +169,7 @@ df_tokena = df_tokens[["tokena_symbol", "tokena_amount"]].groupby('tokena_symbol
 df_tokenb = df_tokens[["tokenb_symbol", "tokenb_amount"]].groupby('tokenb_symbol').sum(
 ).reset_index().rename(columns={'tokenb_symbol': 'symbol', 'tokenb_amount': 'amount'})
 
-df_token_wallet = df_tokens[df_tokens["islps"] is False][[
+df_token_wallet = df_tokens[df_tokens["islps"] == False][[
     "token_symbol", "amount"]].rename(columns={'token_symbol': 'symbol'})
 df_token_all = pd.concat(
     [df_tokena, df_tokenb, df_token_wallet, df_vault_coll]).groupby('symbol').sum()
